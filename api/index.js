@@ -20,6 +20,6 @@ export default async function handler(req, res) {
   } catch (error) {
     console.log(error.message);
   } finally {
-    res.json({ received: true });
+    return res.status(200).end();
   }
 }
