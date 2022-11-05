@@ -5,7 +5,7 @@ const webhookURL = process.env.SLACK_WEBHOOK_URL;
 export function createSig(rawBody, secret) {
   return crypto.createHmac("sha1", secret).update(rawBody).digest("hex");
 }
-function sendSlackMessage(webhookURL, messageBody) {
+export function sendSlackMessage(webhookURL, messageBody) {
   // make sure the incoming message body can be parsed into valid JSON
   try {
     messageBody = JSON.stringify(messageBody);
