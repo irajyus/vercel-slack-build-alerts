@@ -1,3 +1,5 @@
+const crypto = require("crypto");
+
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(404).end();
   try {
