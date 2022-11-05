@@ -1,4 +1,4 @@
-import { createSig, postToSlack } from "./_utils.js";
+import { createSig, sendSlackMessage } from "./_utils.js";
 const secret = process.env.OAUTH2_SECRET;
 const webhookURL = process.env.SLACK_WEBHOOK_URL;
 
@@ -16,9 +16,9 @@ export default async function handler(req, res) {
     if (signature !== xvs) {
       return res.status(403).end();
     } else {
-      const messageBody = { username: "Vercel Alert", text: "Build Error" };
+      let messageBody = { username: "Vercel Alert", text: "Build Error" };
       console.log("Signature matched");
-      postToSlack(webhookURL, messageBody);
+      sendSlackMessage(webhookURL, messageBody);
     }
   } catch (error) {
     console.log(error.message);
