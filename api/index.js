@@ -9,10 +9,7 @@ export default async function handler(req, res) {
     const signature = createSig(rawBody, secret);
     const xvs = req.headers["x-vercel-signature"];
     if (signature !== xvs) {
-      return res.status(403).json({
-        code: "invalid_signature",
-        error: "signature didn't match",
-      });
+      return res.status(403).end();
     } else {
       console.log("Signature matched");
     }
