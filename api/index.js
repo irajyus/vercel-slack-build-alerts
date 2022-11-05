@@ -13,10 +13,7 @@ export default async function handler(req, res) {
     const xvs = req.headers["x-vercel-signature"];
     if (signature !== xvs) {
       return res.status(403).end();
-    } else if (!production) {
-      console.log("Non-production build, ending request");
-      return res.status(200).end();
-    } else {
+    } else if (production) {
       const { name, inspectorUrl } = req.body.payload.deployment;
       let messageBody = {
         text: "*Vercel Build Failure*",
@@ -40,6 +37,8 @@ export default async function handler(req, res) {
       } catch (e) {
         console.error("There was a error with the request", e);
       }
+    } else {
+      console.log("Non-production build, ending request");
     }
   } catch (error) {
     console.log(error.message);
