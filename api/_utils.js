@@ -1,5 +1,6 @@
 import crypto from "crypto";
 const https = require("https");
+const webhookURL = process.env.SLACK_WEBHOOK_URL;
 
 export function createSig(rawBody, secret) {
   return crypto.createHmac("sha1", secret).update(rawBody).digest("hex");
