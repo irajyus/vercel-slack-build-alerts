@@ -1,0 +1,15 @@
+{
+  "name": "vercel-serverless",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irajyus/vercel-serverless.git"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/irajyus/vercel-serverless#readme",
+  "dependencies": {
+    "node-fetch": "^3.2.10",
+    "vercel": "^28.4.14"
+  }
+}
