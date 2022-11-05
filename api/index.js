@@ -4,7 +4,6 @@ const webhookURL = process.env.SLACK_WEBHOOK_URL;
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(404).end();
-  if (req.method === "POST") return res.status(200);
   try {
     const body = await req.body;
     const rawBody = JSON.stringify(body);
