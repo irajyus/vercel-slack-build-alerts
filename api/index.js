@@ -1,4 +1,4 @@
-import { createSig, postToSlack } from "./_utils";
+import { createSig, postToSlack } from "./_utils.js";
 const secret = process.env.OAUTH2_SECRET;
 const webhookURL = process.env.SLACK_WEBHOOK_URL;
 
