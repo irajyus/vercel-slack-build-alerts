@@ -7,7 +7,6 @@ export default async function handler(req, res) {
     const body = await req.body;
     const rawBody = JSON.stringify(body);
     const signature = createSig(rawBody, secret);
-    const xvs = req.headers["x-vercel-signature"];
     if (signature !== req.headers["x-vercel-signature"]) {
       return res.status(403).json({
         code: "invalid_signature",
