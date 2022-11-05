@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import axios from "axios";
+const axios = require("axios");
 
 export function createSig(rawBody, secret) {
   return crypto.createHmac("sha1", secret).update(rawBody).digest("hex");
