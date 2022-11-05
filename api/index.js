@@ -1,23 +1,16 @@
+export const config = { api: { bodyParser: false } };
+
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(404).end();
   try {
-    let rawBody = getRawBody(req);
+    const body = await req.body;
+    const rawBody = JSON.parse(JSON.stringify(body));
     console.log(rawBody);
+    console.log(typeof rawBody);
     console.log(req.headers);
   } catch (error) {
     console.log(error.message);
   } finally {
     res.json({ received: true });
   }
-}
-
-function getRawBody(req) {
-  return new Promise((resolve, reject) => {
-    let bodyChunks = [];
-    req.on("end", () => {
-      const rawBody = Buffer.concat(bodyChunks).toString("utf8");
-      resolve(rawBody);
-    });
-    req.on("data", (chunk) => bodyChunks.push(chunk));
-  });
 }
