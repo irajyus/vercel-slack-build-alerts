@@ -3,7 +3,7 @@ export default async function handler(req, res) {
   try {
     const body = await req.body;
     const rawBody = JSON.stringify(body);
-    const xvs = req.headers("x-vercel-signature");
+    const xvs = req.headers["x-vercel-signature"];
     const signature = crypto
       .createHmac("sha1", process.env.OAUTH2_SECRET)
       .update(rawBody)
