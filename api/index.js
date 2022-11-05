@@ -13,6 +13,8 @@ export default async function handler(req, res) {
         code: "invalid_signature",
         error: "signature didn't match",
       });
+    } else {
+      console.log("Signature matched");
     }
     console.log(xvs);
     console.log(signature);
