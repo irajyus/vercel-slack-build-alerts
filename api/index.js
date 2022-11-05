@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(404).end();
   try {
-    const rawBody = getRawBody(req);
+    let rawBody = getRawBody(req);
     console.log(rawBody);
     console.log(req.headers);
   } catch (error) {
