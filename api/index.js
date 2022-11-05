@@ -6,22 +6,23 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(404).end();
   try {
     const body = await req.body;
+    const production = req.body.payload.target === "production";
+    console.log(production);
     const rawBody = JSON.stringify(body);
     const signature = createSig(rawBody, secret);
     const xvs = req.headers["x-vercel-signature"];
-    console.log(xvs);
-    console.log(signature);
-    console.log(rawBody);
-    console.log(typeof rawBody);
     if (signature !== xvs) {
       return res.status(403).end();
+    } else if (!production) {
+      console.log("Non-production build, ending request");
+      return res.status(200).end();
     } else {
       const { name, inspectorUrl } = req.body.payload.deployment;
       let messageBody = {
         text: "*Vercel Build Failure*",
         attachments: [
           {
-            color: "#2eb886",
+            color: "#fa1e3c",
             fields: [{ title: "Project", value: name, short: true }],
             actions: [
               {
@@ -33,8 +34,6 @@ export default async function handler(req, res) {
           },
         ],
       };
-      console.log("Signature matched");
-      console.log("Sending slack message");
       try {
         const slackResponse = await sendSlackMessage(webhookURL, messageBody);
         console.log("Message response", slackResponse);
