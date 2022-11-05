@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     } else {
       const messageBody = { username: "Vercel Alert", text: "Build Error" };
       console.log("Signature matched");
-      await postToSlack(webhookURL, messageBody);
+      postToSlack(webhookURL, messageBody);
     }
   } catch (error) {
     console.log(error.message);
