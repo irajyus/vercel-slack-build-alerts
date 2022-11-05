@@ -49,19 +49,19 @@ export function sendSlackMessage(webhookURL, messageBody) {
 }
 
 // main
-(async function () {
-  if (!webhookURL) {
-    console.error("Please fill in your Webhook URL");
-  }
+// (async function () {
+//   if (!webhookURL) {
+//     console.error("Please fill in your Webhook URL");
+//   }
 
-  console.log("Sending slack message");
-  try {
-    const slackResponse = await sendSlackMessage(webhookURL, messageBody);
-    console.log("Message response", slackResponse);
-  } catch (e) {
-    console.error("There was a error with the request", e);
-  }
-})();
+//   console.log("Sending slack message");
+//   try {
+//     const slackResponse = await sendSlackMessage(webhookURL, messageBody);
+//     console.log("Message response", slackResponse);
+//   } catch (e) {
+//     console.error("There was a error with the request", e);
+//   }
+// })();
 // export async function postToSlack(webhookURL, messageBody) {
 //   axios({
 //     method: "post",
