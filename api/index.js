@@ -42,7 +42,9 @@ export default async function handler(req, res) {
     }
   } catch (error) {
     console.log(error.message);
-  } finally {
-    return res.status(200).send("OK");
+    return res.status(400).json({ error });
   }
+  // finally {
+  //   return res.status(200).send("OK");
+  // }
 }
